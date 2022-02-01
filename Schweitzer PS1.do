@@ -29,7 +29,7 @@ In order to begin to answer the following research questions:
 version 17     // Declares the Stata version do file was written in
 set matsize 800     // Sets the maximum number of variables to specific amount, default is 400
 
-* Student academics data set
+* Student academics data set  This data set contains information pulled from an institutional admissions table and contains a contrived ID and their HS academic credentials such as HSGPA and SAT scores.
 
 tempfile gsheet     // Temporarily assign file name gsheet
 copy "https://docs.google.com/spreadsheets/d/e/2PACX-1vRJ05CdMHfbzNR9AKHrzYJ7Hj5swUzxESo6YJn2ZDV7uhydeZe6X9p_K6GbpQSaCw/pub?output=xlsx" `gsheet', replace // copies data set from the web
@@ -44,7 +44,7 @@ save acad.dta, replace  // Save downloaded data set as Stata data file in workin
 outsheet using acad.csv, replace comma nolabel // Export data set to csv format -- replace added to over-write existing file
 
 
-* Student demographic data set
+* Student demographic data set This data set contains information pulled from a Customer Relationship Management (CRM) database and contains demographic information about the incoming cohort.
 
 tempfile gsheet     // Temporarily assign file name gsheet
 copy "https://docs.google.com/spreadsheets/d/e/2PACX-1vTMTSSQSn5EOcxo3CEX6D_sx9VBtO9Nag9nSSLu6ZVHSx-apC9FsEnKJlhVtUkJ_g/pub?output=xlsx" `gsheet', replace // copies data set from the web
