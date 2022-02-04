@@ -21,7 +21,7 @@ Preamble: this file pulls down two data sets: 1.) a list of incoming first-year 
 In order to begin to answer the following research questions:
 1.) What factors have an effect on students' grade performance at the University?
 2.) What factors have an effect on early retention progress at the University?
-
+//there's a ton of data at https://nces.ed.gov/
 ******************************************************
 
 */
@@ -31,6 +31,7 @@ set matsize 800     // Sets the maximum number of variables to specific amount, 
 
 * Student academics data set  This data set contains information pulled from an institutional admissions table and contains a contrived ID and their HS academic credentials such as HSGPA and SAT scores.
 
+//cite data properly give url todata source!
 tempfile gsheet     // Temporarily assign file name gsheet
 copy "https://docs.google.com/spreadsheets/d/e/2PACX-1vRJ05CdMHfbzNR9AKHrzYJ7Hj5swUzxESo6YJn2ZDV7uhydeZe6X9p_K6GbpQSaCw/pub?output=xlsx" `gsheet', replace // copies data set from the web
 import excel using `gsheet', first sheet("data") clear // Imports Excel file using local name
@@ -45,6 +46,7 @@ outsheet using acad.csv, replace comma nolabel // Export data set to csv format 
 
 
 * Student demographic data set This data set contains information pulled from a Customer Relationship Management (CRM) database and contains demographic information about the incoming cohort.
+//ok good, you say where its from; but again also give url
 
 tempfile gsheet     // Temporarily assign file name gsheet
 copy "https://docs.google.com/spreadsheets/d/e/2PACX-1vTMTSSQSn5EOcxo3CEX6D_sx9VBtO9Nag9nSSLu6ZVHSx-apC9FsEnKJlhVtUkJ_g/pub?output=xlsx" `gsheet', replace // copies data set from the web
