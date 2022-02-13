@@ -23,7 +23,8 @@ Preamble: this file pulls down two data sets: 1.) a list of incoming first-year 
 In order to answer the following research questions:
 1.) What factors have an effect on students' grade performance at the University?
 2.) What factors have an effect on early retention progress at the University?
-
+//nice! may want to do lit rev to figure out what these factors are and get data!
+//definitely neighb like poverty, crime, etc--see census data; also maybe distance to campus...etc
 ******************************************************
 
 */
@@ -139,5 +140,7 @@ tab COLLEGE_OF_APPLICATION HSGPA_BIN // Tabulate two fields -- one from each dat
 
 exit
 
+//ok looks good, but as far as i can tell both datasets are from the same source! get at least 1 from different source, like census, dept of educ etc!
+//and keep in mind that for the next ps, need 5 new datasets! each from different source!
 
 
