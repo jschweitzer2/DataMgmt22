@@ -79,6 +79,8 @@ restore
 keep if YR == "2021" // Keeping most recent year
 tab YR
 
+//should save somewhere here so that the changes we made to the data are not lost
+
 tempfile gsheet     // Temporarily assign file name gsheet
 copy "https://docs.google.com/spreadsheets/d/e/2PACX-1vRJ05CdMHfbzNR9AKHrzYJ7Hj5swUzxESo6YJn2ZDV7uhydeZe6X9p_K6GbpQSaCw/pub?output=xlsx" `gsheet', replace // copies data set from the web
 import excel using `gsheet', first sheet("data") clear // Imports Excel file using local name
@@ -95,6 +97,7 @@ describe
 summarize HSGPA, detail
 tab HSGPA, mi
 
+//this line could have been moved where the first recode is
 recode HSGPA (min/3.52 = 1) (3.53/3.76 = 2) (3.76/4.02 = 3) (4.03/max = 4), generate(HSGPA_BIN) // Generating a categorical HSGPA variable based on percentiles of variable
 
 tab HSGPA HSGPA_BIN, mi // Tabulate to check work to make sure recode worked as expected
@@ -117,11 +120,14 @@ tab RESIDENCY, sort // Similar to above, 84% of students are in-state
 generate RESIDENCY2 = . // Generate a NJ/Non-NJ resident variable from current RESIDENCY variable
 replace RESIDENCY2 = 1 if RESIDENCY == "NJ"  // Dummy variable where NJ = 1
 replace RESIDENCY2 = 0 if RESIDENCY != "NJ"  // All others equal 0
+//for dummy variables just name the variable as cat 1, so here sth like nj_residency
+
 label variable RESIDENCY "NJ vs. Non-NJ Resident"
 tab RESIDENCY RESIDENCY2, mi // Checking cross-tab to make sure above coding worked as expected
 
 
 tab ETHNICITY
+//tab is good, but codebook is even better
 generate AFRAM_IND = .  // Generate African American dummy variable
 replace AFRAM_IND = 1 if ETHNICITY == "African American"
 replace AFRAM_IND = 0 if ETHNICITY != "African American"
@@ -288,6 +294,12 @@ use studentFAHS, clear
 destring YR, replace  // Converted YR to numeric for match
 save studentFAHS, replace
 
+//KLUDGE
+//LATER
+//may investigate the vars on which i merge
+ta COUNTY
+//turns out 16perc missing
+//but then sch cod only 14 perc missing so maybe can figure out county from sch code
 merge m:1 COUNTY YR using countylong, generate(_mergecty)
 
 /*
