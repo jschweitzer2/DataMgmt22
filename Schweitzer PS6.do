@@ -1,3 +1,9 @@
+//overall looks good, i wish i was doing educatuion research then i could give you substantive comments on the topic, but i dont; 
+//may talk to mike hays and paul jargowsky who do that kind of research
+
+//i'd say this is pretty much it, if anything could play with python (but not necessary)
+
+//nice preamble
 
 /*
 ********************************************************************************
